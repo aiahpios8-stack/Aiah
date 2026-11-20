@@ -1,0 +1,1393 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maison Xylia Café — Coffee, Comfort & Sweet Moments</title>
+    
+    <!-- Google Fonts: Playfair Display (Headings) & Plus Jakarta Sans (Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..800;1,400..800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind Custom Configuration -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        lavender: {
+                            50: '#F7F4FD',
+                            100: '#EBE5F7',
+                            200: '#D7CBEF',
+                            300: '#B8A1D9',
+                            400: '#9B7EDE',
+                            500: '#825ECC',
+                            600: '#6A44B3',
+                            700: '#553396',
+                        },
+                        cream: '#FDFBF7',
+                        beige: '#F5EFE6',
+                        blush: {
+                            100: '#FAF0F2',
+                            200: '#F4D9DF',
+                            300: '#E8B4BC',
+                            400: '#D98A97',
+                        },
+                        espresso: {
+                            700: '#5C4738',
+                            800: '#3D2E24',
+                            900: '#2C221E',
+                        },
+                        night: {
+                            800: '#282133',
+                            900: '#1E1926',
+                            950: '#14101A'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 30px -5px rgba(92, 71, 56, 0.08)',
+                        'lavender-glow': '0 10px 25px -5px rgba(155, 126, 222, 0.35)',
+                        'gold-glow': '0 10px 25px -5px rgba(212, 175, 55, 0.4)',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Custom Theme Custom Properties and Utility Styles -->
+    <style>
+        /* CSS Custom Properties for theme dynamic mapping */
+        :root {
+            --bg-main: #FDFBF7;
+            --bg-card: #FFFFFF;
+            --bg-subtle: #F5EFE6;
+            --text-main: #2C221E;
+            --text-muted: #6E5A4E;
+            --accent-lavender: #9B7EDE;
+            --accent-pink: #E8B4BC;
+            --border-color: #E8DFD8;
+        }
+
+        html.dark {
+            --bg-main: #14101A;
+            --bg-card: #231C2C;
+            --bg-subtle: #2D2438;
+            --text-main: #F5EFE6;
+            --text-muted: #C8BDD4;
+            --accent-lavender: #B8A1D9;
+            --accent-pink: #E8B4BC;
+            --border-color: #3C304A;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Glassmorphism Navigation Effect */
+        .glass-nav {
+            background: rgba(253, 251, 247, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        html.dark .glass-nav {
+            background: rgba(30, 25, 38, 0.88);
+        }
+
+        /* Gold Signature Border for Dubai Chewy Cookie */
+        .signature-border {
+            position: relative;
+            background: linear-gradient(135deg, #FFD700, #B8A1D9, #E8B4BC, #FFD700);
+            background-size: 300% 300%;
+            animation: gradientBorder 6s ease infinite;
+            padding: 2px;
+            border-radius: 1.5rem;
+        }
+
+        @keyframes gradientBorder {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Smooth Hide/Show Transitions for Menu Filters */
+        .menu-item-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .menu-item-card.hidden-card {
+            opacity: 0;
+            transform: scale(0.9) translateY(10px);
+            pointer-events: none;
+            position: absolute;
+            width: 0;
+            height: 0;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-main);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #B8A1D9;
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #9B7EDE;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased selection:bg-lavender-200 selection:text-lavender-900">
+
+    <!-- ==========================================
+         NAVIGATION BAR SECTION
+         ========================================== -->
+    <header class="sticky top-0 z-50 glass-nav border-b border-stone-200/50 dark:border-purple-900/40 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
+            <!-- Brand Logo & Name -->
+            <a href="#home" class="flex items-center gap-3 group focus:outline-none">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-lavender-400 to-blush-300 flex items-center justify-center text-white shadow-md transform group-hover:rotate-12 transition-transform duration-300">
+                    <!-- Coffee & Botanical SVG Icon -->
+                    <svg class="w-5 h-5 text-cream fill-current" viewBox="0 0 24 24">
+                        <path d="M2,21V19H20V21H2M20,8E0,2.21 0.89,4 2,4H5V3A1,1 0 0,1 6,2H14A1,1 0 0,1 15,3V4H18A2,2 0 0,1 20,6V8A2,2 0 0,1 18,10H17.8C17.37,12.33 15.65,14.22 13.34,14.8C12.31,16.1 10.74,17 9,17A6,6 0 0,1 3,11V4H2A1,1 0 0,1 1,3A1,1 0 0,1 2,2M18,6H15V8H18V6M5,6V11A4,4 0 0,0 9,15A4,4 0 0,0 13,11V6H5Z"/>
+                    </svg>
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-serif text-2xl font-bold tracking-tight text-espresso-900 dark:text-cream">Maison Xylia</span>
+                    <span class="text-xs uppercase tracking-widest text-lavender-600 dark:text-lavender-300 font-semibold -mt-1">Café & Dessert</span>
+                </div>
+            </a>
+
+            <!-- Desktop Navigation Links -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
+                <a href="#home" class="text-espresso-800 dark:text-stone-200 hover:text-lavender-600 dark:hover:text-lavender-300 transition-colors">Home</a>
+                <a href="#menu" class="text-espresso-800 dark:text-stone-200 hover:text-lavender-600 dark:hover:text-lavender-300 transition-colors">Our Menu</a>
+                <a href="#best-sellers" class="text-espresso-800 dark:text-stone-200 hover:text-lavender-600 dark:hover:text-lavender-300 transition-colors">Best Sellers</a>
+                <a href="#about" class="text-espresso-800 dark:text-stone-200 hover:text-lavender-600 dark:hover:text-lavender-300 transition-colors">About Us</a>
+                <a href="#contact" class="text-espresso-800 dark:text-stone-200 hover:text-lavender-600 dark:hover:text-lavender-300 transition-colors">Contact</a>
+            </nav>
+
+            <!-- Theme Switcher & Order Drawer Trigger Button -->
+            <div class="flex items-center gap-3">
+                <!-- Cart / Order Quick Toggle Button -->
+                <button id="cartDrawerBtn" class="relative p-2.5 rounded-full bg-lavender-100 dark:bg-purple-950 text-espresso-800 dark:text-lavender-200 hover:bg-lavender-200 dark:hover:bg-purple-900 transition-colors" title="View Current Order">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+                    </svg>
+                    <span id="cartBadge" class="absolute -top-1 -right-1 bg-blush-300 text-espresso-900 font-bold text-xs w-5 h-5 rounded-full flex items-center justify-center border-2 border-white dark:border-night-900 scale-0 transition-transform duration-300">0</span>
+                </button>
+
+                <!-- Theme Switcher Toggle -->
+                <button id="themeToggleBtn" aria-label="Toggle theme" class="p-2.5 rounded-full bg-beige dark:bg-purple-950 text-espresso-800 dark:text-lavender-200 hover:bg-lavender-200 dark:hover:bg-purple-900 transition-colors">
+                    <!-- Sun Icon (Dark Mode Active) -->
+                    <svg id="sunIcon" class="w-5 h-5 hidden dark:block text-amber-300" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 100 2h1z" clip-rule="evenodd"/>
+                    </svg>
+                    <!-- Moon Icon (Light Mode Active) -->
+                    <svg id="moonIcon" class="w-5 h-5 block dark:hidden text-espresso-800" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+                    </svg>
+                </button>
+
+                <!-- Mobile Hamburger Menu Button -->
+                <button id="mobileMenuBtn" aria-label="Open Mobile Menu" class="md:hidden p-2 rounded-lg text-espresso-800 dark:text-stone-200 hover:bg-beige dark:hover:bg-purple-900 transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu Drawer -->
+        <div id="mobileMenu" class="hidden md:hidden bg-cream dark:bg-night-900 border-b border-stone-200 dark:border-purple-900/50 px-6 py-4 space-y-3">
+            <a href="#home" class="mobile-nav-link block py-2 text-espresso-800 dark:text-stone-200 hover:text-lavender-600 font-medium">Home</a>
+            <a href="#menu" class="mobile-nav-link block py-2 text-espresso-800 dark:text-stone-200 hover:text-lavender-600 font-medium">Our Menu</a>
+            <a href="#best-sellers" class="mobile-nav-link block py-2 text-espresso-800 dark:text-stone-200 hover:text-lavender-600 font-medium">Best Sellers</a>
+            <a href="#about" class="mobile-nav-link block py-2 text-espresso-800 dark:text-stone-200 hover:text-lavender-600 font-medium">About Us</a>
+            <a href="#contact" class="mobile-nav-link block py-2 text-espresso-800 dark:text-stone-200 hover:text-lavender-600 font-medium">Contact</a>
+        </div>
+    </header>
+
+
+    <!-- ==========================================
+         HERO SECTION
+         ========================================== -->
+    <section id="home" class="relative overflow-hidden py-16 lg:py-24 bg-gradient-to-b from-lavender-50 via-cream to-cream dark:from-night-950 dark:via-night-900 dark:to-night-900 transition-colors duration-300">
+        <!-- Subtle Decorative Background Circles -->
+        <div class="absolute -top-20 -left-20 w-96 h-96 bg-lavender-200/40 dark:bg-purple-900/20 rounded-full filter blur-3xl pointer-events-none"></div>
+        <div class="absolute top-1/2 -right-20 w-80 h-80 bg-blush-200/40 dark:bg-pink-900/10 rounded-full filter blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Hero Left Column: Copy & CTAs -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-lavender-100 dark:bg-purple-900/40 text-lavender-700 dark:text-lavender-300 text-xs sm:text-sm font-semibold tracking-wide border border-lavender-200 dark:border-purple-700/50">
+                        <span class="w-2 h-2 rounded-full bg-lavender-500 animate-pulse"></span>
+                        Welcome to Maison Xylia
+                    </div>
+                    
+                    <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight text-espresso-900 dark:text-cream">
+                        Where Every Sip Feels Like a <span class="text-transparent bg-clip-text bg-gradient-to-r from-lavender-600 to-blush-400 dark:from-lavender-300 dark:to-blush-300">Warm Embrace</span>
+                    </h1>
+
+                    <p class="text-base sm:text-lg text-espresso-700 dark:text-stone-300 max-w-2xl mx-auto lg:mx-0 font-light leading-relaxed">
+                        Step into our serene, lavender-scented sanctuary crafted for life’s quiet moments, warm conversations, study sessions, and delightful sweet cravings. Handcrafted coffee brews and artisanal baked treats await you.
+                    </p>
+
+                    <div class="pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                        <a href="#menu" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-gradient-to-r from-lavender-500 to-lavender-600 hover:from-lavender-600 hover:to-lavender-700 text-white font-medium shadow-lavender-glow hover:shadow-lg transition-all duration-300 text-center transform hover:-translate-y-0.5">
+                            Explore Our Menu
+                        </a>
+                        <a href="#best-sellers" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-white dark:bg-night-800 border border-stone-200 dark:border-purple-800/60 text-espresso-900 dark:text-cream hover:bg-beige dark:hover:bg-purple-900/40 font-medium transition-all duration-300 text-center">
+                            View Best Sellers
+                        </a>
+                    </div>
+
+                    <!-- Highlight Badges -->
+                    <div class="pt-6 grid grid-cols-3 gap-4 border-t border-stone-200/60 dark:border-purple-900/40 max-w-lg mx-auto lg:mx-0">
+                        <div>
+                            <p class="font-serif text-2xl font-bold text-lavender-600 dark:text-lavender-300">100%</p>
+                            <p class="text-xs text-stone-500 dark:text-stone-400">Arabica Beans</p>
+                        </div>
+                        <div>
+                            <p class="font-serif text-2xl font-bold text-lavender-600 dark:text-lavender-300">Daily</p>
+                            <p class="text-xs text-stone-500 dark:text-stone-400">Fresh Bakery</p>
+                        </div>
+                        <div>
+                            <p class="font-serif text-2xl font-bold text-lavender-600 dark:text-lavender-300">Cozy</p>
+                            <p class="text-xs text-stone-500 dark:text-stone-400">Study Nooks</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Right Column: Visual Collage -->
+                <div class="lg:col-span-5 relative">
+                    <div class="relative mx-auto max-w-md lg:max-w-none">
+                        <!-- Main Hero Imagery -->
+                        <div class="relative z-10 rounded-3xl overflow-hidden shadow-2xl border-4 border-white dark:border-night-800 transform rotate-1 hover:rotate-0 transition-transform duration-500">
+                            <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=800&q=80" alt="Maison Xylia Cozy Café Interior" class="w-full h-[420px] object-cover object-center">
+                        </div>
+
+                        <!-- Floating Badge 1: Freshly Baked -->
+                        <div class="absolute -top-6 -left-6 z-20 bg-white dark:bg-night-800 p-4 rounded-2xl shadow-xl border border-stone-100 dark:border-purple-900/50 flex items-center gap-3 animate-bounce" style="animation-duration: 4s;">
+                            <div class="w-10 h-10 rounded-xl bg-blush-200 dark:bg-purple-900 flex items-center justify-center text-xl">
+                                🥐
+                            </div>
+                            <div>
+                                <p class="text-xs text-stone-400 font-medium">Oven-Fresh</p>
+                                <p class="text-sm font-bold text-espresso-900 dark:text-cream">Freshly Baked Daily</p>
+                            </div>
+                        </div>
+
+                        <!-- Floating Badge 2: Signature Brews -->
+                        <div class="absolute -bottom-6 -right-6 z-20 bg-white dark:bg-night-800 p-4 rounded-2xl shadow-xl border border-stone-100 dark:border-purple-900/50 flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-lavender-200 dark:bg-purple-900 flex items-center justify-center text-xl">
+                                ☕
+                            </div>
+                            <div>
+                                <p class="text-xs text-stone-400 font-medium">Signature</p>
+                                <p class="text-sm font-bold text-espresso-900 dark:text-cream">Artisanal Brews</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ==========================================
+         BEST SELLERS SECTION (#best-sellers)
+         ========================================== -->
+    <section id="best-sellers" class="py-20 bg-beige/50 dark:bg-night-950 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Section Header -->
+            <div class="text-center max-w-2xl mx-auto mb-16 space-y-3">
+                <span class="text-xs uppercase tracking-widest text-lavender-600 dark:text-lavender-300 font-bold bg-lavender-100 dark:bg-purple-900/50 px-3 py-1 rounded-full">Customer Favorites</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-espresso-900 dark:text-cream">Our Signature Best Sellers</h2>
+                <p class="text-stone-600 dark:text-stone-400 text-sm sm:text-base">Handpicked popular treats crafted with exceptional love, rich ingredients, and unforgettable flavors.</p>
+            </div>
+
+            <!-- Best Sellers Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <!-- FEATURED SPOTLIGHT: DUBAI CHEWY COOKIE (Main Showcase) -->
+                <div class="md:col-span-2 lg:col-span-3 signature-border shadow-gold-glow mb-4">
+                    <div class="bg-white dark:bg-night-900 rounded-[1.35rem] p-6 sm:p-8 grid grid-cols-1 md:grid-cols-12 gap-8 items-center h-full">
+                        
+                        <!-- Featured Cookie Image -->
+                        <div class="md:col-span-6 relative overflow-hidden rounded-2xl group">
+                            <img src="https://images.unsplash.com/photo-1618923850107-d1a234d7a73a?auto=format&fit=crop&w=800&q=80" alt="Dubai Chewy Cookie" class="w-full h-72 sm:h-80 object-cover transform group-hover:scale-105 transition-transform duration-500">
+                            
+                            <!-- Badges -->
+                            <div class="absolute top-4 left-4 bg-gradient-to-r from-amber-500 to-amber-600 text-white font-bold text-xs uppercase tracking-wider px-3.5 py-1.5 rounded-full shadow-md flex items-center gap-1.5">
+                                <span>✨</span> Signature Favorite
+                            </div>
+                            <div class="absolute bottom-4 right-4 bg-espresso-900/80 backdrop-blur-md text-amber-300 text-xs font-semibold px-3 py-1 rounded-lg">
+                                Trending Dessert
+                            </div>
+                        </div>
+
+                        <!-- Featured Cookie Details -->
+                        <div class="md:col-span-6 space-y-4">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-semibold uppercase tracking-wider text-lavender-600 dark:text-lavender-300">House Specialty</span>
+                                <span class="font-serif text-2xl font-bold text-espresso-900 dark:text-amber-300">₱180</span>
+                            </div>
+
+                            <h3 class="font-serif text-2xl sm:text-3xl font-bold text-espresso-900 dark:text-cream">
+                                Dubai Chewy Cookie
+                            </h3>
+
+                            <p class="text-stone-600 dark:text-stone-300 text-sm sm:text-base leading-relaxed">
+                                A soft, decadent chewy cookie inspired by Dubai chocolate, featuring a rich dark chocolate dough filled with velvety pistachio cream and crispy toasted kunafa pastry for an exquisite crunch.
+                            </p>
+
+                            <div class="pt-2 flex flex-wrap gap-2 text-xs font-medium text-stone-500 dark:text-stone-400">
+                                <span class="bg-beige dark:bg-purple-900/40 px-3 py-1 rounded-full">Pistachio Cream</span>
+                                <span class="bg-beige dark:bg-purple-900/40 px-3 py-1 rounded-full">Crispy Kunafa</span>
+                                <span class="bg-beige dark:bg-purple-900/40 px-3 py-1 rounded-full">Belgian Chocolate</span>
+                            </div>
+
+                            <div class="pt-4 flex items-center gap-4">
+                                <button onclick="addToOrder('Dubai Chewy Cookie', 180, 'Desserts')" class="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-gradient-to-r from-lavender-500 to-lavender-600 hover:from-lavender-600 hover:to-lavender-700 text-white font-medium shadow-lavender-glow transition-all flex items-center justify-center gap-2">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                                    </svg>
+                                    Add to Order
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Best Seller 2: Spanish Latte -->
+                <div class="bg-white dark:bg-night-900 rounded-3xl p-6 shadow-soft hover:shadow-xl border border-stone-100 dark:border-purple-900/40 transition-all duration-300 flex flex-col justify-between group">
+                    <div>
+                        <div class="relative overflow-hidden rounded-2xl mb-5">
+                            <img src="https://images.unsplash.com/photo-1517256064527-09c73fc73e38?auto=format&fit=crop&w=600&q=80" alt="Spanish Latte" class="w-full h-48 object-cover transform group-hover:scale-105 transition-transform duration-500">
+                            <span class="absolute top-3 left-3 bg-blush-300 text-espresso-900 text-xs font-bold px-3 py-1 rounded-full shadow">Best Seller</span>
+                        </div>
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-serif text-xl font-bold text-espresso-900 dark:text-cream">Spanish Latte</h3>
+                            <span class="font-serif text-lg font-bold text-lavender-600 dark:text-lavender-300">₱160</span>
+                        </div>
+                        <p class="text-stone-600 dark:text-stone-400 text-xs leading-relaxed mb-4">
+                            Rich espresso combined with creamy textured milk and sweetened condensed milk for a perfectly balanced velvet flavor.
+                        </p>
+                    </div>
+                    <button onclick="addToOrder('Spanish Latte', 160, 'Coffee')" class="w-full py-2.5 rounded-xl bg-beige dark:bg-purple-900/40 hover:bg-lavender-500 hover:text-white dark:hover:bg-lavender-500 text-espresso-900 dark:text-cream font-medium text-sm transition-colors flex items-center justify-center gap-2">
+                        + Add to Order
+                    </button>
+                </div>
+
+                <!-- Best Seller 3: Matcha Latte -->
+                <div class="bg-white dark:bg-night-900 rounded-3xl p-6 shadow-soft hover:shadow-xl border border-stone-100 dark:border-purple-900/40 transition-all duration-300 flex flex-col justify-between group">
+                    <div>
+                        <div class="relative overflow-hidden rounded-2xl mb-5">
+                            <img src="https://images.unsplash.com/photo-1536256263959-770b48d82b0a?auto=format&fit=crop&w=600&q=80" alt="Matcha Latte" class="w-full h-48 object-cover transform group-hover:scale-105 transition-transform duration-500">
+                            <span class="absolute top-3 left-3 bg-blush-300 text-espresso-900 text-xs font-bold px-3 py-1 rounded-full shadow">Best Seller</span>
+                        </div>
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-serif text-xl font-bold text-espresso-900 dark:text-cream">Matcha Latte</h3>
+                            <span class="font-serif text-lg font-bold text-lavender-600 dark:text-lavender-300">₱165</span>
+                        </div>
+                        <p class="text-stone-600 dark:text-stone-400 text-xs leading-relaxed mb-4">
+                            Premium ceremonial grade Uji matcha whisked with warm microfoam oat or regular milk.
+                        </p>
+                    </div>
+                    <button onclick="addToOrder('Matcha Latte', 165, 'Non-Coffee')" class="w-full py-2.5 rounded-xl bg-beige dark:bg-purple-900/40 hover:bg-lavender-500 hover:text-white dark:hover:bg-lavender-500 text-espresso-900 dark:text-cream font-medium text-sm transition-colors flex items-center justify-center gap-2">
+                        + Add to Order
+                    </button>
+                </div>
+
+                <!-- Best Seller 4: Strawberry Cheesecake -->
+                <div class="bg-white dark:bg-night-900 rounded-3xl p-6 shadow-soft hover:shadow-xl border border-stone-100 dark:border-purple-900/40 transition-all duration-300 flex flex-col justify-between group">
+                    <div>
+                        <div class="relative overflow-hidden rounded-2xl mb-5">
+                            <img src="https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=600&q=80" alt="Strawberry Cheesecake" class="w-full h-48 object-cover transform group-hover:scale-105 transition-transform duration-500">
+                            <span class="absolute top-3 left-3 bg-blush-300 text-espresso-900 text-xs font-bold px-3 py-1 rounded-full shadow">Best Seller</span>
+                        </div>
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-serif text-xl font-bold text-espresso-900 dark:text-cream">Strawberry Cheesecake</h3>
+                            <span class="font-serif text-lg font-bold text-lavender-600 dark:text-lavender-300">₱190</span>
+                        </div>
+                        <p class="text-stone-600 dark:text-stone-400 text-xs leading-relaxed mb-4">
+                            Classic New York style creamy cheesecake topped with freshly prepared wild strawberry compote.
+                        </p>
+                    </div>
+                    <button onclick="addToOrder('Strawberry Cheesecake', 190, 'Desserts')" class="w-full py-2.5 rounded-xl bg-beige dark:bg-purple-900/40 hover:bg-lavender-500 hover:text-white dark:hover:bg-lavender-500 text-espresso-900 dark:text-cream font-medium text-sm transition-colors flex items-center justify-center gap-2">
+                        + Add to Order
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ==========================================
+         OUR MENU SECTION (#menu) & CATEGORY FILTER
+         ========================================== -->
+    <section id="menu" class="py-20 bg-cream dark:bg-night-900 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Section Header -->
+            <div class="text-center max-w-2xl mx-auto mb-12 space-y-3">
+                <span class="text-xs uppercase tracking-widest text-lavender-600 dark:text-lavender-300 font-bold bg-lavender-100 dark:bg-purple-900/50 px-3 py-1 rounded-full">Handcrafted Menu</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-espresso-900 dark:text-cream">Discover Our Delicious Menu</h2>
+                <p class="text-stone-600 dark:text-stone-400 text-sm sm:text-base">Explore our carefully curated drinks, buttery pastries, and heavenly desserts.</p>
+            </div>
+
+            <!-- Category Filter Bar -->
+            <div class="flex flex-wrap items-center justify-center gap-3 mb-12">
+                <button class="menu-filter-btn px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 bg-lavender-500 text-white shadow-md" data-category="all">
+                    All Items
+                </button>
+                <button class="menu-filter-btn px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 bg-beige dark:bg-purple-950 text-stone-700 dark:text-stone-300 hover:bg-lavender-200" data-category="coffee">
+                    ☕ Coffee
+                </button>
+                <button class="menu-filter-btn px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 bg-beige dark:bg-purple-950 text-stone-700 dark:text-stone-300 hover:bg-lavender-200" data-category="non-coffee">
+                    🍵 Non-Coffee
+                </button>
+                <button class="menu-filter-btn px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 bg-beige dark:bg-purple-950 text-stone-700 dark:text-stone-300 hover:bg-lavender-200" data-category="pastries">
+                    🥐 Pastries
+                </button>
+                <button class="menu-filter-btn px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 bg-beige dark:bg-purple-950 text-stone-700 dark:text-stone-300 hover:bg-lavender-200" data-category="desserts">
+                    🍰 Desserts
+                </button>
+            </div>
+
+            <!-- Menu Cards Grid (14 Items Required) -->
+            <div id="menuGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative min-h-[400px]">
+
+                <!-- ITEM 1: Latte (Coffee) -->
+                <div class="menu-item-card bg-white dark:bg-night-800 rounded-3xl p-5 shadow-soft border border-stone-100 dark:border-purple-900/30 flex flex-col justify-between" data-category="coffee">
+                    <div>
+                        <div class="overflow-hidden rounded-2xl mb-4 h-40">
+                            <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&w=600&q=80" alt="Latte" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                        </div>
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="font-serif text-lg font-bold text-espresso-900 dark:text-cream">Latte</h3>
+                            <span class="text-lavender-600 dark:text-lavender-300 font-serif font-bold">₱140</span>
+                        </div>
+                        <p class="text-xs text-stone-500 dark:text-stone-400 mb-4">Smooth espresso with silky steamed milk and subtle latte art.</p>
+                    </div>
+                    <button onclick="addToOrder('Latte', 140, 'Coffee')" class="w-full py-2 rounded-xl bg-beige dark:bg-purple-900/40 hover:bg-lavender-500 hover:text-white dark:hover:bg-lavender-500 text-espresso-900 dark:text-cream text-xs font-semibold transition-colors">
+                        + Add to Order
+                    </button>
+                </div>
+
+                <!-- ITEM 2: Cappuccino (Coffee) -->
+                <div class="menu-item-card bg-white dark:bg-night-800 rounded-3xl p-5 shadow-soft border border-stone-100 dark:border-purple-900/30 flex flex-col justify-between" data-category="coffee">
+                    <div>
+                        <div class="overflow-hidden rounded-2xl mb-4 h-40">
+                            <img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&w=600&q=80" alt="Cappuccino" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                        </div>
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="font-serif text-lg font-bold text-espresso-900 dark:text-cream">Cappuccino</h3>
+                            <span class="text-lavender-600 dark:text-lavender-300 font-serif font-bold">₱145</span>
+                        </div>
+                        <p class="text-xs text-stone-500 dark:text-stone-400 mb-4">Rich espresso topped with a thick layer of velvety warm milk foam.</p>
+                    </div>
+                    <button onclick="addToOrder('Cappuccino', 145, 'Coffee')" class="w-full py-2 rounded-xl bg-beige dark:bg-purple-900/40 hover:bg-lavender-500 hover:text-white dark:hover:bg-lavender-500 text-espresso-900 dark:text-cream text-xs font-semibold transition-colors">
+                        + Add to Order
+                    </button>
+                </div>
+
+                <!-- ITEM 3: Americano (Coffee) -->
+                <div class="menu-item-card bg-white dark:bg-night-800 rounded-3xl p-5 shadow-soft border border-stone-100 dark:border-purple-900/30 flex flex-col justify-between" data-category="coffee">
+                    <div>
+                        <div class="overflow-hidden rounded-2xl mb-4 h-40">
+                            <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=600&q=80" alt="Americano" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                        </div>
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="font-serif text-lg font-bold text-espresso-900 dark:text-cream">Americano</h3>
+                            <span class="text-lavender-600 dark:text-lavender-300 font-serif font-bold">₱120</span>
+                        </div>
+                        <p class="text-xs text-stone-500 dark:text-stone-400 mb-4">Bold dark espresso diluted with clean hot water for a crisp taste.</p>
+                    </div>
+                    <button onclick="addToOrder('Americano', 120, 'Coffee')" class="w-full py-2 rounded-xl bg-beige dark:bg-purple-900/40 hover:bg-lavender-500 hover:text-white dark:hover:bg-lavender-500 text-espresso-900 dark:text-cream text-xs font-semibold transition-colors">
+                        + Add to Order
+                    </button>
+                </div>
+
+                <!-- ITEM 4: Spanish Latte (Coffee) -->
+                <div class="menu-item-card bg-white dark:bg-night-800 rounded-3xl p-5 shadow-soft border border-stone-100 dark:border-purple-900/30 flex flex-col justify-between" data-category="coffee">
+                    <div>
+                        <div class="overflow-hidden rounded-2xl mb-4 h-40">
+                            <img src="https://images.unsplash.com/photo-1517256064527-09c73fc73e38?auto=format&fit=crop&w=600&q=80" alt="Spanish Latte" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                        </div>
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="font-serif text-lg font-bold text-espresso-900 dark:text-cream">Spanish Latte</h3>
+                            <span class="text-lavender-600 dark:text-lavender-300 font-serif font-bold">₱160</span>
+                        </div>
+                        <p class="text-xs text-stone-500 dark:text-stone-400 mb-4">Espresso sweetened with condensed milk and warm silky foam.</p>
+                    </div>
+                    <button onclick="addToOrder('Spanish Latte', 160, 'Coffee')" class="w-full py-2 rounded-xl bg-beige dark:bg-purple-900/40 hover:bg-lavender-500 hover:text-white dark:hover:bg-lavender-500 text-espresso-900 dark:text-cream text-xs font-semibold transition-colors">
+                        + Add to Order
+                    </button>
+                </div>
+
+                <!-- ITEM 5: Matcha (Non-Coffee) -->
+                <div class="menu-item-card bg-white dark:bg-night-800 rounded-3xl p-5 shadow-soft border border-stone-100 dark:border-purple-900/30 flex flex-col justify-between" data-category="non-coffee">
+                    <div>
+                        <div class="overflow-hidden rounded-2xl mb-4 h-40">
+                            <img src="https://images.unsplash.com/photo-1536256263959-770b48d82b0a?auto=format&fit=crop&w=600&q=80" alt="Matcha" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                        </div>
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="font-serif text-lg font-bold text-espresso-900 dark:text-cream">Matcha Latte</h3>
+                            <span class="text-lavender-600 dark:text-lavender-300 font-serif font-bold">₱165</span>
+                        </div>
+                        <p class="text-xs text-stone-500 dark:text-stone-400 mb-4">Ceremonial grade green tea whisked smooth with steamed fresh milk.</p>
+                    </div>
+                    <button onclick="addToOrder('Matcha Latte', 165, 'Non-Coffee')" class="w-full py-2 rounded-xl bg-beige dark:bg-purple-900/40 hover:bg-lavender-500 hover:text-white dark:hover:bg-lavender-500 text-espresso-900 dark:text-cream text-xs font-semibold transition-colors">
+                        + Add to Order
+                    </button>
+                </div>
+
+                <!-- ITEM 6: Milk Tea (Non-Coffee) -->
+                <div class="menu-item-card bg-white dark:bg-night-800 rounded-3xl p-5 shadow-soft border border-stone-100 dark:border-purple-900/30 flex flex-col justify-between" data-category="non-coffee">
+                    <div>
+                        <div class="overflow-hidden rounded-2xl mb-4 h-40">
+                            <img src="https://images.unsplash.com/photo-1558857563-b371033873b8?auto=format&fit=crop&w=600&q=80" alt="Milk Tea" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                        </div>
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="font-serif text-lg font-bold text-espresso-900 dark:text-cream">Signature Milk Tea</h3>
+                            <span class="text-lavender-600 dark:text-lavender-300 font-serif font-bold">₱135</span>
+                        </div>
+                        <p class="text-xs text-stone-500 dark:text-stone-400 mb-4">Fresh black tea blend infused with house syrup and chewy pearls.</p>
+                    </div>
+                    <button onclick="addToOrder('Signature Milk Tea', 135, 'Non-Coffee')" class="w-full py-2 rounded-xl bg-beige dark:bg-purple-900/40 hover:bg-lavender-500 hover:text-white dark:hover:bg-lavender-500 text-espresso-900 dark:text-cream text-xs font-semibold transition-colors">
+                        + Add to Order
+                    </button>
+                </div>
+
+                <!-- ITEM 7: Chocolate (Non-Coffee) -->
+                <div class="menu-item-card bg-white dark:bg-night-800 rounded-3xl p-5 shadow-soft border border-stone-100 dark:border-purple-900/30 flex flex-col justify-between" data-category="non-coffee">
+                    <div>
+                        <div class="overflow-hidden rounded-2xl mb-4 h-40">
+                            <img src="https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?auto=format&fit=crop&w=600&q=80" alt="Hot Chocolate" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                        </div>
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="font-serif text-lg font-bold text-espresso-900 dark:text-cream">Artisanal Chocolate</h3>
+                            <span class="text-lavender-600 dark:text-lavender-300 font-serif font-bold">₱150</span>
+                        </div>
+                        <p class="text-xs text-stone-500 dark:text-stone-400 mb-4">Rich melted dark chocolate whisked with warm milk and cocoa dusting.</p>
+                    </div>
+                    <button onclick="addToOrder('Artisanal Chocolate', 150, 'Non-Coffee')" class="w-full py-2 rounded-xl bg-beige dark:bg-purple-900/40 hover:bg-lavender-500 hover:text-white dark:hover:bg-lavender-500 text-espresso-900 dark:text-cream text-xs font-semibold transition-colors">
+                        + Add to Order
+                    </button>
+                </div>
+
+                <!-- ITEM 8: Croissants (Pastries) -->
+                <div class="menu-item-card bg-white dark:bg-night-800 rounded-3xl p-5 shadow-soft border border-stone-100 dark:border-purple-900/30 flex flex-col justify-between" data-category="pastries">
+                    <div>
+                        <div class="overflow-hidden rounded-2xl mb-4 h-40">
+                            <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=600&q=80" alt="Butter Croissants" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                        </div>
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="font-serif text-lg font-bold text-espresso-900 dark:text-cream">Butter Croissant</h3>
+                            <span class="text-lavender-600 dark:text-lavender-300 font-serif font-bold">₱110</span>
+                        </div>
+                        <p class="text-xs text-stone-500 dark:text-stone-400 mb-4">Flaky, golden French croissant baked fresh with pure butter.</p>
+                    </div>
+                    <button onclick="addToOrder('Butter Croissant', 110, 'Pastries')" class="w-full py-2 rounded-xl bg-beige dark:bg-purple-900/40 hover:bg-lavender-500 hover:text-white dark:hover:bg-lavender-500 text-espresso-900 dark:text-cream text-xs font-semibold transition-colors">
+                        + Add to Order
+                    </button>
+                </div>
+
+                <!-- ITEM 9: Cookies (Pastries) -->
+                <div class="menu-item-card bg-white dark:bg-night-800 rounded-3xl p-5 shadow-soft border border-stone-100 dark:border-purple-900/30 flex flex-col justify-between" data-category="pastries">
+                    <div>
+                        <div class="overflow-hidden rounded-2xl mb-4 h-40">
+                            <img src="https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=600&q=80" alt="Choco Chunk Cookies" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                        </div>
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="font-serif text-lg font-bold text-espresso-900 dark:text-cream">Choco Chunk Cookie</h3>
+                            <span class="text-lavender-600 dark:text-lavender-300 font-serif font-bold">₱95</span>
+                        </div>
+                        <p class="text-xs text-stone-500 dark:text-stone-400 mb-4">Crispy edges and soft gooey center packed with dark chocolate chunks.</p>
+                    </div>
+                    <button onclick="addToOrder('Choco Chunk Cookie', 95, 'Pastries')" class="w-full py-2 rounded-xl bg-beige dark:bg-purple-900/40 hover:bg-lavender-500 hover:text-white dark:hover:bg-lavender-500 text-espresso-900 dark:text-cream text-xs font-semibold transition-colors">
+                        + Add to Order
+                    </button>
+                </div>
+
+                <!-- ITEM 10: Muffins (Pastries) -->
+                <div class="menu-item-card bg-white dark:bg-night-800 rounded-3xl p-5 shadow-soft border border-stone-100 dark:border-purple-900/30 flex flex-col justify-between" data-category="pastries">
+                    <div>
+                        <div class="overflow-hidden rounded-2xl mb-4 h-40">
+                            <img src="https://images.unsplash.com/photo-1586985289688-ca3cf47d3e6e?auto=format&fit=crop&w=600&q=80" alt="Blueberry Muffin" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                        </div>
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="font-serif text-lg font-bold text-espresso-900 dark:text-cream">Blueberry Muffin</h3>
+                            <span class="text-lavender-600 dark:text-lavender-300 font-serif font-bold">₱105</span>
+                        </div>
+                        <p class="text-xs text-stone-500 dark:text-stone-400 mb-4">Moist vanilla muffin bursting with fresh wild blueberries.</p>
+                    </div>
+                    <button onclick="addToOrder('Blueberry Muffin', 105, 'Pastries')" class="w-full py-2 rounded-xl bg-beige dark:bg-purple-900/40 hover:bg-lavender-500 hover:text-white dark:hover:bg-lavender-500 text-espresso-900 dark:text-cream text-xs font-semibold transition-colors">
+                        + Add to Order
+                    </button>
+                </div>
+
+                <!-- ITEM 11: Cheesecake (Desserts) -->
+                <div class="menu-item-card bg-white dark:bg-night-800 rounded-3xl p-5 shadow-soft border border-stone-100 dark:border-purple-900/30 flex flex-col justify-between" data-category="desserts">
+                    <div>
+                        <div class="overflow-hidden rounded-2xl mb-4 h-40">
+                            <img src="https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=600&q=80" alt="Strawberry Cheesecake" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                        </div>
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="font-serif text-lg font-bold text-espresso-900 dark:text-cream">Strawberry Cheesecake</h3>
+                            <span class="text-lavender-600 dark:text-lavender-300 font-serif font-bold">₱190</span>
+                        </div>
+                        <p class="text-xs text-stone-500 dark:text-stone-400 mb-4">Rich baked cheesecake with wild strawberry topping and Graham crust.</p>
+                    </div>
+                    <button onclick="addToOrder('Strawberry Cheesecake', 190, 'Desserts')" class="w-full py-2 rounded-xl bg-beige dark:bg-purple-900/40 hover:bg-lavender-500 hover:text-white dark:hover:bg-lavender-500 text-espresso-900 dark:text-cream text-xs font-semibold transition-colors">
+                        + Add to Order
+                    </button>
+                </div>
+
+                <!-- ITEM 12: Brownies (Desserts) -->
+                <div class="menu-item-card bg-white dark:bg-night-800 rounded-3xl p-5 shadow-soft border border-stone-100 dark:border-purple-900/30 flex flex-col justify-between" data-category="desserts">
+                    <div>
+                        <div class="overflow-hidden rounded-2xl mb-4 h-40">
+                            <img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=600&q=80" alt="Fudge Brownie" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                        </div>
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="font-serif text-lg font-bold text-espresso-900 dark:text-cream">Fudge Brownie</h3>
+                            <span class="text-lavender-600 dark:text-lavender-300 font-serif font-bold">₱115</span>
+                        </div>
+                        <p class="text-xs text-stone-500 dark:text-stone-400 mb-4">Dense, ultra-fudgy dark chocolate brownie sprinkled with sea salt flakes.</p>
+                    </div>
+                    <button onclick="addToOrder('Fudge Brownie', 115, 'Desserts')" class="w-full py-2 rounded-xl bg-beige dark:bg-purple-900/40 hover:bg-lavender-500 hover:text-white dark:hover:bg-lavender-500 text-espresso-900 dark:text-cream text-xs font-semibold transition-colors">
+                        + Add to Order
+                    </button>
+                </div>
+
+                <!-- ITEM 13: Waffles (Desserts) -->
+                <div class="menu-item-card bg-white dark:bg-night-800 rounded-3xl p-5 shadow-soft border border-stone-100 dark:border-purple-900/30 flex flex-col justify-between" data-category="desserts">
+                    <div>
+                        <div class="overflow-hidden rounded-2xl mb-4 h-40">
+                            <img src="https://images.unsplash.com/photo-1562376552-0d160a2f238d?auto=format&fit=crop&w=600&q=80" alt="Belgian Waffles" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                        </div>
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="font-serif text-lg font-bold text-espresso-900 dark:text-cream">Belgian Waffle</h3>
+                            <span class="text-lavender-600 dark:text-lavender-300 font-serif font-bold">₱150</span>
+                        </div>
+                        <p class="text-xs text-stone-500 dark:text-stone-400 mb-4">Golden fluffy waffle served with maple syrup and fresh berry butter.</p>
+                    </div>
+                    <button onclick="addToOrder('Belgian Waffle', 150, 'Desserts')" class="w-full py-2 rounded-xl bg-beige dark:bg-purple-900/40 hover:bg-lavender-500 hover:text-white dark:hover:bg-lavender-500 text-espresso-900 dark:text-cream text-xs font-semibold transition-colors">
+                        + Add to Order
+                    </button>
+                </div>
+
+                <!-- ITEM 14: Dubai Chewy Cookie (Desserts) -->
+                <div class="menu-item-card bg-white dark:bg-night-800 rounded-3xl p-5 shadow-soft border-2 border-amber-300 dark:border-purple-600 flex flex-col justify-between" data-category="desserts">
+                    <div>
+                        <div class="overflow-hidden rounded-2xl mb-4 h-40 relative">
+                            <img src="https://images.unsplash.com/photo-1618923850107-d1a234d7a73a?auto=format&fit=crop&w=600&q=80" alt="Dubai Chewy Cookie" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                            <span class="absolute top-2 left-2 bg-amber-400 text-espresso-900 font-bold text-[10px] px-2 py-0.5 rounded-full">Signature</span>
+                        </div>
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="font-serif text-lg font-bold text-espresso-900 dark:text-cream">Dubai Chewy Cookie</h3>
+                            <span class="text-lavender-600 dark:text-lavender-300 font-serif font-bold">₱180</span>
+                        </div>
+                        <p class="text-xs text-stone-500 dark:text-stone-400 mb-4">Rich chocolate cookie with pistachio cream and crisp kunafa crunch.</p>
+                    </div>
+                    <button onclick="addToOrder('Dubai Chewy Cookie', 180, 'Desserts')" class="w-full py-2 rounded-xl bg-lavender-500 hover:bg-lavender-600 text-white text-xs font-semibold transition-colors">
+                        + Add to Order
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- ==========================================
+         INTERACTIVE ORDER CALCULATOR SECTION
+         ========================================== -->
+    <section id="calculator" class="py-16 bg-gradient-to-b from-beige/60 to-cream dark:from-night-950 dark:to-night-900 transition-colors duration-300 border-t border-stone-200/60 dark:border-purple-900/30">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="bg-white dark:bg-night-800 rounded-3xl shadow-xl p-6 sm:p-10 border border-stone-100 dark:border-purple-900/40">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-stone-200 dark:border-purple-900/40 gap-4">
+                    <div>
+                        <span class="text-xs uppercase tracking-widest text-lavender-600 dark:text-lavender-300 font-bold">Live Order Estimator</span>
+                        <h2 class="font-serif text-2xl sm:text-3xl font-bold text-espresso-900 dark:text-cream">Your Selected Treats</h2>
+                    </div>
+                    
+                    <!-- Quick Dropdown Add -->
+                    <div class="flex items-center gap-2">
+                        <select id="quickSelectMenu" class="px-3 py-2 rounded-xl border border-stone-200 dark:border-purple-900/60 bg-cream dark:bg-night-900 text-xs sm:text-sm text-espresso-900 dark:text-stone-200 focus:outline-none">
+                            <option value="">Quick Add Menu Item...</option>
+                            <option value="Dubai Chewy Cookie|180">Dubai Chewy Cookie — ₱180</option>
+                            <option value="Spanish Latte|160">Spanish Latte — ₱160</option>
+                            <option value="Matcha Latte|165">Matcha Latte — ₱165</option>
+                            <option value="Strawberry Cheesecake|190">Strawberry Cheesecake — ₱190</option>
+                            <option value="Butter Croissant|110">Butter Croissant — ₱110</option>
+                            <option value="Latte|140">Latte — ₱140</option>
+                        </select>
+                        <button onclick="addSelectedDropdownItem()" class="px-4 py-2 rounded-xl bg-lavender-500 text-white text-xs font-semibold hover:bg-lavender-600 transition-colors">
+                            Add
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Order List Table -->
+                <div class="py-6">
+                    <div id="emptyCartMessage" class="text-center py-10 space-y-3">
+                        <div class="w-16 h-16 mx-auto rounded-full bg-lavender-100 dark:bg-purple-950 flex items-center justify-center text-2xl text-lavender-500">
+                            ☕
+                        </div>
+                        <p class="text-stone-500 dark:text-stone-400 font-medium">Your order list is currently empty.</p>
+                        <p class="text-xs text-stone-400 dark:text-stone-500">Click "+ Add to Order" on any menu item above to build your order estimate.</p>
+                    </div>
+
+                    <div id="cartItemsList" class="space-y-4 max-h-80 overflow-y-auto pr-2">
+                        <!-- Dynamic items rendered via JS -->
+                    </div>
+                </div>
+
+                <!-- Order Summary Breakdown -->
+                <div id="orderSummaryBox" class="pt-6 border-t border-stone-200 dark:border-purple-900/40 hidden space-y-4">
+                    
+                    <!-- Dine-in / Takeout Option -->
+                    <div class="flex items-center justify-between text-xs sm:text-sm text-stone-600 dark:text-stone-300">
+                        <span>Dining Option:</span>
+                        <div class="flex items-center gap-4">
+                            <label class="inline-flex items-center gap-1.5 cursor-pointer">
+                                <input type="radio" name="diningOption" value="dine-in" checked onchange="updateCartTotals()" class="text-lavender-500 focus:ring-lavender-400">
+                                <span>Dine-In</span>
+                            </label>
+                            <label class="inline-flex items-center gap-1.5 cursor-pointer">
+                                <input type="radio" name="diningOption" value="takeout" onchange="updateCartTotals()" class="text-lavender-500 focus:ring-lavender-400">
+                                <span>Takeout (+₱15 Box Fee)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="space-y-2 text-sm text-stone-600 dark:text-stone-300">
+                        <div class="flex justify-between">
+                            <span>Subtotal</span>
+                            <span id="subtotalVal" class="font-semibold text-espresso-900 dark:text-cream">₱0.00</span>
+                        </div>
+                        <div id="takeoutFeeRow" class="flex justify-between hidden text-xs text-stone-500">
+                            <span>Eco Eco-friendly Takeout Packaging</span>
+                            <span>₱15.00</span>
+                        </div>
+                        <div class="flex justify-between pt-2 border-t border-stone-200 dark:border-purple-900/40 font-serif text-lg font-bold text-espresso-900 dark:text-cream">
+                            <span>Estimated Total</span>
+                            <span id="grandTotalVal" class="text-lavender-600 dark:text-lavender-300">₱0.00</span>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="pt-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+                        <button onclick="clearCart()" class="text-xs text-red-500 hover:text-red-600 font-medium underline">
+                            Clear Entire Order
+                        </button>
+
+                        <button onclick="simulateOrderCheckout()" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-gradient-to-r from-lavender-500 to-lavender-600 hover:from-lavender-600 hover:to-lavender-700 text-white font-medium shadow-lavender-glow transition-all">
+                            Place Order Request
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- ==========================================
+         ABOUT US SECTION (#about)
+         ========================================== -->
+    <section id="about" class="py-20 bg-cream dark:bg-night-900 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- About Image Gallery -->
+                <div class="lg:col-span-6 grid grid-cols-2 gap-4 relative">
+                    <div class="space-y-4">
+                        <img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=600&q=80" alt="Coffee Brewing" class="rounded-3xl shadow-md object-cover h-64 w-full">
+                        <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=600&q=80" alt="Café Ambiance" class="rounded-3xl shadow-md object-cover h-48 w-full">
+                    </div>
+                    <div class="space-y-4 pt-8">
+                        <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=600&q=80" alt="Pastry Baking" class="rounded-3xl shadow-md object-cover h-48 w-full">
+                        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=600&q=80" alt="Cozy Corner" class="rounded-3xl shadow-md object-cover h-64 w-full">
+                    </div>
+                </div>
+
+                <!-- About Text Copy -->
+                <div class="lg:col-span-6 space-y-6">
+                    <span class="text-xs uppercase tracking-widest text-lavender-600 dark:text-lavender-300 font-bold bg-lavender-100 dark:bg-purple-900/50 px-3 py-1 rounded-full">Our Story</span>
+                    
+                    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-espresso-900 dark:text-cream leading-tight">
+                        Crafted for Quiet Moments & Warm Conversations
+                    </h2>
+
+                    <p class="text-stone-600 dark:text-stone-300 text-sm sm:text-base leading-relaxed">
+                        Founded with a passion for cozy aesthetics and artisanal flavors, <strong>Maison Xylia Café</strong> was born to be your home away from home. Named in honor of elegance and organic warmth, our café blends soft lavender tones, plush seating, soft ambient jazz, and the rich aroma of freshly pulled espresso.
+                    </p>
+
+                    <p class="text-stone-600 dark:text-stone-300 text-sm sm:text-base leading-relaxed">
+                        Whether you're looking for a peaceful corner to read or study, catching up with dear friends over our viral <em>Dubai Chewy Cookie</em>, or enjoying an afternoon Matcha Latte, we ensure every detail brings sweet comfort to your day.
+                    </p>
+
+                    <!-- Feature Pillars -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+                        <div class="flex items-start gap-3 p-4 rounded-2xl bg-beige/60 dark:bg-purple-950/40">
+                            <span class="text-2xl">🌱</span>
+                            <div>
+                                <h4 class="font-bold text-sm text-espresso-900 dark:text-cream">Ethical Beans</h4>
+                                <p class="text-xs text-stone-500 dark:text-stone-400">Sourced from sustainable local growers.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-3 p-4 rounded-2xl bg-beige/60 dark:bg-purple-950/40">
+                            <span class="text-2xl">🧁</span>
+                            <div>
+                                <h4 class="font-bold text-sm text-espresso-900 dark:text-cream">Small-Batch Baking</h4>
+                                <p class="text-xs text-stone-500 dark:text-stone-400">Made fresh in house every morning.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ==========================================
+         CONTACT & INQUIRY SECTION (#contact)
+         ========================================== -->
+    <section id="contact" class="py-20 bg-beige/40 dark:bg-night-950 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                
+                <!-- Contact Details -->
+                <div class="lg:col-span-5 space-y-8">
+                    <div>
+                        <span class="text-xs uppercase tracking-widest text-lavender-600 dark:text-lavender-300 font-bold bg-lavender-100 dark:bg-purple-900/50 px-3 py-1 rounded-full">Get In Touch</span>
+                        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-espresso-900 dark:text-cream mt-3">We’d Love to Host You</h2>
+                        <p class="text-stone-600 dark:text-stone-400 text-sm mt-2">Have a question, feedback, or table reservation inquiry? Send us a message!</p>
+                    </div>
+
+                    <div class="space-y-6">
+                        <!-- Location -->
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-xl bg-lavender-100 dark:bg-purple-900 flex items-center justify-center text-lavender-600 dark:text-lavender-300 shrink-0">
+                                📍
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-sm text-espresso-900 dark:text-cream">Visit Our Location</h4>
+                                <p class="text-xs text-stone-600 dark:text-stone-400 mt-0.5">124 Lavender Lane, Blossom District, Cebu City</p>
+                            </div>
+                        </div>
+
+                        <!-- Hours -->
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-xl bg-lavender-100 dark:bg-purple-900 flex items-center justify-center text-lavender-600 dark:text-lavender-300 shrink-0">
+                                ⏰
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-sm text-espresso-900 dark:text-cream">Operating Hours</h4>
+                                <p class="text-xs text-stone-600 dark:text-stone-400 mt-0.5">Mon – Fri: 7:30 AM – 9:00 PM</p>
+                                <p class="text-xs text-stone-600 dark:text-stone-400">Sat – Sun: 8:00 AM – 10:00 PM</p>
+                            </div>
+                        </div>
+
+                        <!-- Phone -->
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-xl bg-lavender-100 dark:bg-purple-900 flex items-center justify-center text-lavender-600 dark:text-lavender-300 shrink-0">
+                                📞
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-sm text-espresso-900 dark:text-cream">Phone & Reservations</h4>
+                                <p class="text-xs text-stone-600 dark:text-stone-400 mt-0.5">+63 (032) 555-0194</p>
+                            </div>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-xl bg-lavender-100 dark:bg-purple-900 flex items-center justify-center text-lavender-600 dark:text-lavender-300 shrink-0">
+                                ✉️
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-sm text-espresso-900 dark:text-cream">Email Us</h4>
+                                <p class="text-xs text-stone-600 dark:text-stone-400 mt-0.5">hello@maisonxyliacafe.com</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Social Icons -->
+                    <div class="pt-4 border-t border-stone-200 dark:border-purple-900/40">
+                        <p class="text-xs font-bold uppercase tracking-wider text-stone-500 mb-3">Connect With Us</p>
+                        <div class="flex items-center gap-3">
+                            <a href="#" aria-label="Instagram" class="w-9 h-9 rounded-full bg-white dark:bg-night-800 shadow flex items-center justify-center text-espresso-800 dark:text-cream hover:bg-lavender-500 hover:text-white transition-colors">
+                                <!-- Instagram SVG -->
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                            </a>
+                            <a href="#" aria-label="Facebook" class="w-9 h-9 rounded-full bg-white dark:bg-night-800 shadow flex items-center justify-center text-espresso-800 dark:text-cream hover:bg-lavender-500 hover:text-white transition-colors">
+                                <!-- Facebook SVG -->
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M9 8H6v4h3v12h5V12h3.642L18 8h-4V6.333C14 5.374 14.5 5 15.5 5H18V0h-3.808C10.592 0 9 1.583 9 4.615V8z"/></svg>
+                            </a>
+                            <a href="#" aria-label="TikTok" class="w-9 h-9 rounded-full bg-white dark:bg-night-800 shadow flex items-center justify-center text-espresso-800 dark:text-cream hover:bg-lavender-500 hover:text-white transition-colors">
+                                <!-- TikTok SVG -->
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12.525 0h3.08c.012 1.443.57 2.76 1.54 3.73a6.837 6.837 0 0 0 4.855 1.905v3.136a9.92 9.92 0 0 1-4.855-1.258V14.5A7.5 7.5 0 1 1 9.645 7.028v3.195a4.33 4.33 0 1 0 3.88 4.277V0z"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form Column -->
+                <div class="lg:col-span-7 bg-white dark:bg-night-800 rounded-3xl p-6 sm:p-8 shadow-xl border border-stone-100 dark:border-purple-900/40 relative">
+                    
+                    <!-- Confirmation Message Card (Hidden initially) -->
+                    <div id="contactSuccessMsg" class="hidden text-center py-12 space-y-4">
+                        <div class="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 mx-auto flex items-center justify-center text-3xl">
+                            ✓
+                        </div>
+                        <h3 class="font-serif text-2xl font-bold text-espresso-900 dark:text-cream">Message Sent Warmly!</h3>
+                        <p class="text-stone-600 dark:text-stone-300 text-sm max-w-md mx-auto">
+                            Thank you for reaching out to Maison Xylia Café. Our team has received your inquiry and will get back to you shortly.
+                        </p>
+                        <button onclick="resetContactForm()" class="px-6 py-2.5 rounded-xl bg-lavender-500 text-white font-medium text-xs">
+                            Send Another Message
+                        </button>
+                    </div>
+
+                    <!-- Interactive Form -->
+                    <form id="contactForm" onsubmit="handleFormSubmit(event)" class="space-y-5">
+                        <h3 class="font-serif text-xl font-bold text-espresso-900 dark:text-cream mb-2">Send Us an Inquiry</h3>
+                        
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <!-- Full Name -->
+                            <div>
+                                <label for="senderName" class="block text-xs font-semibold text-stone-700 dark:text-stone-300 mb-1">Your Name *</label>
+                                <input type="text" id="senderName" class="w-full px-4 py-3 rounded-xl border border-stone-200 dark:border-purple-900/60 bg-cream dark:bg-night-900 text-sm text-espresso-900 dark:text-stone-100 focus:outline-none focus:ring-2 focus:ring-lavender-400" placeholder="e.g., Isabelle Pios">
+                                <span id="nameError" class="text-[11px] text-red-500 hidden mt-1">Please enter your name.</span>
+                            </div>
+
+                            <!-- Email Address -->
+                            <div>
+                                <label for="senderEmail" class="block text-xs font-semibold text-stone-700 dark:text-stone-300 mb-1">Email Address *</label>
+                                <input type="email" id="senderEmail" class="w-full px-4 py-3 rounded-xl border border-stone-200 dark:border-purple-900/60 bg-cream dark:bg-night-900 text-sm text-espresso-900 dark:text-stone-100 focus:outline-none focus:ring-2 focus:ring-lavender-400" placeholder="isabelle@example.com">
+                                <span id="emailError" class="text-[11px] text-red-500 hidden mt-1">Please enter a valid email address.</span>
+                            </div>
+                        </div>
+
+                        <!-- Inquiry Type -->
+                        <div>
+                            <label for="inquiryType" class="block text-xs font-semibold text-stone-700 dark:text-stone-300 mb-1">Inquiry Topic</label>
+                            <select id="inquiryType" class="w-full px-4 py-3 rounded-xl border border-stone-200 dark:border-purple-900/60 bg-cream dark:bg-night-900 text-sm text-espresso-900 dark:text-stone-100 focus:outline-none focus:ring-2 focus:ring-lavender-400">
+                                <option value="general">General Question</option>
+                                <option value="reservation">Table Reservation</option>
+                                <option value="catering">Bulk Dessert / Event Ordering</option>
+                                <option value="feedback">Feedback & Praise</option>
+                            </select>
+                        </div>
+
+                        <!-- Message -->
+                        <div>
+                            <label for="senderMessage" class="block text-xs font-semibold text-stone-700 dark:text-stone-300 mb-1">Your Message *</label>
+                            <textarea id="senderMessage" rows="4" class="w-full px-4 py-3 rounded-xl border border-stone-200 dark:border-purple-900/60 bg-cream dark:bg-night-900 text-sm text-espresso-900 dark:text-stone-100 focus:outline-none focus:ring-2 focus:ring-lavender-400" placeholder="Tell us what's on your mind..."></textarea>
+                            <span id="messageError" class="text-[11px] text-red-500 hidden mt-1">Please write a short message.</span>
+                        </div>
+
+                        <button type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-lavender-500 to-lavender-600 hover:from-lavender-600 hover:to-lavender-700 text-white font-medium text-sm shadow-lavender-glow transition-all">
+                            Send Message
+                        </button>
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- ==========================================
+         FOOTER SECTION
+         ========================================== -->
+    <footer class="bg-espresso-900 dark:bg-night-950 text-stone-300 py-12 border-t border-espresso-800 dark:border-purple-950 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 pb-10 border-b border-espresso-800 dark:border-purple-900/40">
+                
+                <!-- Brand Info -->
+                <div class="md:col-span-5 space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-full bg-lavender-400 flex items-center justify-center text-white">
+                            ☕
+                        </div>
+                        <span class="font-serif text-xl font-bold text-cream">Maison Xylia Café</span>
+                    </div>
+                    <p class="text-xs text-stone-400 max-w-sm leading-relaxed">
+                        A cozy café and dessert sanctuary offering freshly brewed coffee, signature beverages, and handmade sweet treats in an elegant atmosphere.
+                    </p>
+                </div>
+
+                <!-- Quick Navigation -->
+                <div class="md:col-span-3 space-y-3">
+                    <h4 class="font-serif text-sm font-bold text-cream uppercase tracking-wider">Quick Navigation</h4>
+                    <ul class="space-y-2 text-xs text-stone-400">
+                        <li><a href="#home" class="hover:text-lavender-300 transition-colors">Home</a></li>
+                        <li><a href="#menu" class="hover:text-lavender-300 transition-colors">Our Menu</a></li>
+                        <li><a href="#best-sellers" class="hover:text-lavender-300 transition-colors">Best Sellers</a></li>
+                        <li><a href="#about" class="hover:text-lavender-300 transition-colors">About Us</a></li>
+                        <li><a href="#contact" class="hover:text-lavender-300 transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Hours & Location -->
+                <div class="md:col-span-4 space-y-3 text-xs text-stone-400">
+                    <h4 class="font-serif text-sm font-bold text-cream uppercase tracking-wider">Store Hours</h4>
+                    <p>Mon – Fri: 7:30 AM – 9:00 PM</p>
+                    <p>Sat – Sun: 8:00 AM – 10:00 PM</p>
+                    <p class="pt-2 text-lavender-300 font-medium">📍 124 Lavender Lane, Blossom District, Cebu City</p>
+                </div>
+
+            </div>
+
+            <div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-stone-500 gap-4">
+                <p>© 2026 Maison Xylia Café. Crafted with love & lavender.</p>
+                <p>Designed for Xylia Isabelle A. Pios</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- ==========================================
+         JAVASCRIPT INTERACTIVE LOGIC
+         ========================================== -->
+    <script>
+        // Store user cart items array
+        let cart = [];
+
+        // Dynamic Document Initialization
+        document.addEventListener('DOMContentLoaded', () => {
+            initTheme();
+            initMenuFilters();
+            initMobileMenu();
+        });
+
+        // ---------------------------------------------------------------------
+        // 1. THEME SWITCHER LOGIC (LIGHT / DARK MODE)
+        // ---------------------------------------------------------------------
+        function initTheme() {
+            const themeBtn = document.getElementById('themeToggleBtn');
+            const html = document.documentElement;
+
+            // Load saved theme or system preference
+            const savedTheme = localStorage.getItem('maison_theme');
+            if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                html.classList.add('dark');
+            } else {
+                html.classList.remove('dark');
+            }
+
+            themeBtn.addEventListener('click', () => {
+                html.classList.toggle('dark');
+                const isDark = html.classList.contains('dark');
+                localStorage.setItem('maison_theme', isDark ? 'dark' : 'light');
+            });
+        }
+
+        // ---------------------------------------------------------------------
+        // 2. MOBILE HAMBURGER MENU TOGGLE
+        // ---------------------------------------------------------------------
+        function initMobileMenu() {
+            const btn = document.getElementById('mobileMenuBtn');
+            const menu = document.getElementById('mobileMenu');
+            const links = document.querySelectorAll('.mobile-nav-link');
+
+            btn.addEventListener('click', () => {
+                menu.classList.toggle('hidden');
+            });
+
+            links.forEach(link => {
+                link.addEventListener('click', () => {
+                    menu.classList.add('hidden');
+                });
+            });
+        }
+
+        // ---------------------------------------------------------------------
+        // 3. INTERACTIVE MENU CATEGORY FILTER
+        // ---------------------------------------------------------------------
+        function initMenuFilters() {
+            const filterBtns = document.querySelectorAll('.menu-filter-btn');
+            const itemCards = document.querySelectorAll('.menu-item-card');
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Remove active style from all filter buttons
+                    filterBtns.forEach(b => {
+                        b.classList.remove('bg-lavender-500', 'text-white', 'shadow-md');
+                        b.classList.add('bg-beige', 'dark:bg-purple-950', 'text-stone-700', 'dark:text-stone-300');
+                    });
+
+                    // Add active style to clicked button
+                    btn.classList.remove('bg-beige', 'dark:bg-purple-950', 'text-stone-700', 'dark:text-stone-300');
+                    btn.classList.add('bg-lavender-500', 'text-white', 'shadow-md');
+
+                    const category = btn.getAttribute('data-category');
+
+                    itemCards.forEach(card => {
+                        const cardCategory = card.getAttribute('data-category');
+                        if (category === 'all' || cardCategory === category) {
+                            card.classList.remove('hidden-card');
+                        } else {
+                            card.classList.add('hidden-card');
+                        }
+                    });
+                });
+            });
+        }
+
+        // ---------------------------------------------------------------------
+        // 4. ORDER CALCULATOR & CART LOGIC
+        // ---------------------------------------------------------------------
+        
+        // Add Item to Cart
+        function addToOrder(itemName, price, category) {
+            const existingIndex = cart.findIndex(item => item.name === itemName);
+
+            if (existingIndex > -1) {
+                cart[existingIndex].quantity += 1;
+            } else {
+                cart.push({
+                    name: itemName,
+                    price: price,
+                    quantity: 1,
+                    category: category
+                });
+            }
+
+            renderCart();
+            
+            // Scroll smoothly to Calculator section if on mobile/small screen
+            const calcSection = document.getElementById('calculator');
+            calcSection.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Add from Quick Dropdown
+        function addSelectedDropdownItem() {
+            const select = document.getElementById('quickSelectMenu');
+            const val = select.value;
+            if (!val) return;
+
+            const [name, price] = val.split('|');
+            addToOrder(name, parseFloat(price), 'QuickAdd');
+            select.value = "";
+        }
+
+        // Update Item Quantity
+        function updateQuantity(index, change) {
+            if (cart[index]) {
+                cart[index].quantity += change;
+                if (cart[index].quantity <= 0) {
+                    cart.splice(index, 1);
+                }
+            }
+            renderCart();
+        }
+
+        // Remove Single Item
+        function removeItem(index) {
+            cart.splice(index, 1);
+            renderCart();
+        }
+
+        // Clear Entire Cart
+        function clearCart() {
+            cart = [];
+            renderCart();
+        }
+
+        // Render Cart UI Items
+        function renderCart() {
+            const emptyMsg = document.getElementById('emptyCartMessage');
+            const cartItemsList = document.getElementById('cartItemsList');
+            const summaryBox = document.getElementById('orderSummaryBox');
+            const cartBadge = document.getElementById('cartBadge');
+
+            const totalCount = cart.reduce((acc, item) => acc + item.quantity, 0);
+
+            // Update badge count
+            if (totalCount > 0) {
+                cartBadge.textContent = totalCount;
+                cartBadge.classList.remove('scale-0');
+            } else {
+                cartBadge.classList.add('scale-0');
+            }
+
+            if (cart.length === 0) {
+                emptyMsg.classList.remove('hidden');
+                cartItemsList.innerHTML = '';
+                summaryBox.classList.add('hidden');
+                return;
+            }
+
+            emptyMsg.classList.add('hidden');
+            summaryBox.classList.remove('hidden');
+
+            cartItemsList.innerHTML = cart.map((item, idx) => `
+                <div class="flex items-center justify-between p-3 rounded-2xl bg-cream dark:bg-night-900 border border-stone-200/60 dark:border-purple-900/40">
+                    <div>
+                        <h4 class="font-serif font-bold text-sm text-espresso-900 dark:text-cream">${item.name}</h4>
+                        <p class="text-xs text-stone-500">₱${item.price.toFixed(2)} each</p>
+                    </div>
+
+                    <div class="flex items-center gap-3">
+                        <div class="flex items-center bg-white dark:bg-night-800 rounded-xl border border-stone-200 dark:border-purple-900 px-2 py-1">
+                            <button onclick="updateQuantity(${idx}, -1)" class="w-5 h-5 flex items-center justify-center text-xs font-bold text-stone-600 dark:text-stone-300 hover:text-lavender-600">-</button>
+                            <span class="text-xs font-bold px-2 text-espresso-900 dark:text-cream">${item.quantity}</span>
+                            <button onclick="updateQuantity(${idx}, 1)" class="w-5 h-5 flex items-center justify-center text-xs font-bold text-stone-600 dark:text-stone-300 hover:text-lavender-600">+</button>
+                        </div>
+                        <span class="font-serif text-sm font-bold text-espresso-900 dark:text-cream w-16 text-right">₱${(item.price * item.quantity).toFixed(2)}</span>
+                        <button onclick="removeItem(${idx})" class="text-stone-400 hover:text-red-500 text-xs px-1" title="Remove item">✕</button>
+                    </div>
+                </div>
+            `).join('');
+
+            updateCartTotals();
+        }
+
+        // Calculate and Update Totals
+        function updateCartTotals() {
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const diningOption = document.querySelector('input[name="diningOption"]:checked').value;
+            const takeoutFee = (diningOption === 'takeout' && cart.length > 0) ? 15 : 0;
+
+            const takeoutRow = document.getElementById('takeoutFeeRow');
+            if (takeoutFee > 0) {
+                takeoutRow.classList.remove('hidden');
+            } else {
+                takeoutRow.classList.add('hidden');
+            }
+
+            const grandTotal = subtotal + takeoutFee;
+
+            document.getElementById('subtotalVal').textContent = `₱${subtotal.toFixed(2)}`;
+            document.getElementById('grandTotalVal').textContent = `₱${grandTotal.toFixed(2)}`;
+        }
+
+        // Simulate Order Checkout Submission
+        function simulateOrderCheckout() {
+            if (cart.length === 0) return;
+            
+            const total = document.getElementById('grandTotalVal').textContent;
+            
+            // Create dynamic overlay confirmation card
+            const modal = document.createElement('div');
+            modal.className = "fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-fade-in";
+            modal.innerHTML = `
+                <div class="bg-white dark:bg-night-800 rounded-3xl p-8 max-w-sm w-full text-center space-y-4 shadow-2xl border border-stone-200 dark:border-purple-900">
+                    <div class="w-16 h-16 rounded-full bg-lavender-100 text-lavender-600 text-3xl mx-auto flex items-center justify-center">
+                        ✨
+                    </div>
+                    <h3 class="font-serif text-2xl font-bold text-espresso-900 dark:text-cream">Order Estimate Ready!</h3>
+                    <p class="text-xs text-stone-600 dark:text-stone-300">
+                        Your estimated total is <strong class="text-lavender-600 dark:text-lavender-300 text-sm">${total}</strong>. Show this to our barista at the counter or submit as a pre-order reservation.
+                    </p>
+                    <button id="closeOrderModalBtn" class="w-full py-3 rounded-xl bg-lavender-500 text-white font-medium text-xs shadow-md">
+                        Got it, Thank you!
+                    </button>
+                </div>
+            `;
+            document.body.appendChild(modal);
+
+            document.getElementById('closeOrderModalBtn').onclick = () => {
+                modal.remove();
+                clearCart();
+            };
+        }
+
+        // ---------------------------------------------------------------------
+        // 5. CONTACT FORM VALIDATION LOGIC
+        // ---------------------------------------------------------------------
+        function handleFormSubmit(event) {
+            event.preventDefault();
+
+            const nameInput = document.getElementById('senderName');
+            const emailInput = document.getElementById('senderEmail');
+            const msgInput = document.getElementById('senderMessage');
+
+            const nameErr = document.getElementById('nameError');
+            const emailErr = document.getElementById('emailError');
+            const msgErr = document.getElementById('messageError');
+
+            let isValid = true;
+
+            // Simple Email Regex Validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!nameInput.value.trim()) {
+                nameErr.classList.remove('hidden');
+                isValid = false;
+            } else {
+                nameErr.classList.add('hidden');
+            }
+
+            if (!emailRegex.test(emailInput.value.trim())) {
+                emailErr.classList.remove('hidden');
+                isValid = false;
+            } else {
+                emailErr.classList.add('hidden');
+            }
+
+            if (!msgInput.value.trim()) {
+                msgErr.classList.remove('hidden');
+                isValid = false;
+            } else {
+                msgErr.classList.add('hidden');
+            }
+
+            if (isValid) {
+                document.getElementById('contactForm').classList.add('hidden');
+                document.getElementById('contactSuccessMsg').classList.remove('hidden');
+            }
+        }
+
+        function resetContactForm() {
+            document.getElementById('contactForm').reset();
+            document.getElementById('contactForm').classList.remove('hidden');
+            document.getElementById('contactSuccessMsg').classList.add('hidden');
+        }
+
+        // Cart Drawer button smooth scrolling to Order Calculator
+        document.getElementById('cartDrawerBtn').addEventListener('click', () => {
+            const calc = document.getElementById('calculator');
+            calc.scrollIntoView({ behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
